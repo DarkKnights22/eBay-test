@@ -1,0 +1,5 @@
+playwright>=1.45.0
+playwright-stealth==1.0.6
+pandas>=2.0.0
+pyyaml>=6.0
+numpy>=1.24.0

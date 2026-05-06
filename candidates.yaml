@@ -1,0 +1,18 @@
+candidates:
+  - name: "BMW G20 M Sport wheels"
+    search_query: "BMW G20 M Sport wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "Akrapovic exhaust BMW F80 M3"
+    search_query: "Akrapovic BMW F80 M3 exhaust"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon mirror caps F80"
+    search_query: "BMW M Performance carbon mirror caps F80 F82"
+    category: trim
+    bundle_is_canonical: true
+    expects_for_parts: false
