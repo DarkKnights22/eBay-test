@@ -296,12 +296,12 @@ def scrape_candidate(
                 break
 
             try:
-                page.wait_for_selector("ul.srp-results, li.s-item", timeout=10000)
+                page.wait_for_selector("ul.srp-results, li.s-card", timeout=10000)
             except PWTimeoutError:
                 logger.warning(f"  no results container on page {pgn}")
                 break
 
-            cards = page.locator("li.s-item").all()
+            cards = page.locator("li.s-card").all()
             if not cards:
                 logger.info(f"  page {pgn}: no cards, stopping")
                 break
@@ -319,13 +319,13 @@ def scrape_candidate(
                 except Exception:
                     pass
 
-                title = _safe_inner_text(card.locator(".s-item__title"))
+                title = _safe_inner_text(card.locator(".s-card__title .su-styled-text"))
                 if not title:
                     continue
-                price_text = _safe_inner_text(card.locator(".s-item__price"))
+                price_text = _safe_inner_text(card.locator(".s-card__price"))
                 meta_text = _safe_inner_text(card)  # whole card text — has sold date + bid count
-                condition = _safe_inner_text(card.locator(".SECONDARY_INFO"))
-                href = _safe_attr(card.locator("a.s-item__link"), "href")
+                condition = _safe_inner_text(card.locator(".s-card__subtitle"))
+                href = _safe_attr(card.locator("a.s-card__link"), "href")
 
                 listing, status = parse_card_fields(
                     title=title,
