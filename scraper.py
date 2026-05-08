@@ -58,6 +58,7 @@ SOLD_DATE_REL_RE = re.compile(
     re.IGNORECASE,
 )
 BIDS_RE = re.compile(r"\b\d+\s+bids?\b", re.IGNORECASE)
+ITEM_ID_RE = re.compile(r"/itm/(\d+)")
 
 
 @dataclass
@@ -115,6 +116,14 @@ def parse_sold_date(text: str, today: Optional[datetime] = None) -> Optional[dat
 
 def detect_bundle(title: str) -> bool:
     return bool(BUNDLE_RE.search(title or ""))
+
+
+def extract_item_id(url: str) -> Optional[str]:
+    """Pull the numeric item id out of an eBay listing URL (.../itm/{id}?...)."""
+    if not url:
+        return None
+    m = ITEM_ID_RE.search(url)
+    return m.group(1) if m else None
 
 
 def detect_captcha(html: str) -> bool:
@@ -257,6 +266,7 @@ def scrape_candidate(
     today = datetime.now()
     cutoff = today - timedelta(days=DAYS_WINDOW)
     listings: list[Listing] = []
+    seen_ids: set[str] = set()  # dedupe across pages — eBay loops listings when results run out
 
     page = context.new_page()
     if HAS_STEALTH:
@@ -296,7 +306,7 @@ def scrape_candidate(
                 break
 
             try:
-                page.wait_for_selector("ul.srp-results, li.s-card", timeout=10000)
+                page.wait_for_selector("ul.srp-results, li.s-card", timeout=25000)
             except PWTimeoutError:
                 logger.warning(f"  no results container on page {pgn}")
                 break
@@ -308,6 +318,7 @@ def scrape_candidate(
 
             kept = 0
             old_skipped = 0
+            duplicates = 0
             other_skipped: dict[str, int] = {}
 
             for card in cards:
@@ -340,6 +351,12 @@ def scrape_candidate(
                     expects_for_parts=expects_for_parts,
                 )
                 if listing is not None:
+                    item_id = extract_item_id(listing.url)
+                    if item_id and item_id in seen_ids:
+                        duplicates += 1
+                        continue
+                    if item_id:
+                        seen_ids.add(item_id)
                     listings.append(listing)
                     kept += 1
                 elif status == "old":
@@ -348,17 +365,22 @@ def scrape_candidate(
                     other_skipped[status] = other_skipped.get(status, 0) + 1
 
             logger.info(
-                f"  page {pgn}: kept={kept}, old={old_skipped}, "
+                f"  page {pgn}: kept={kept}, dup={duplicates}, old={old_skipped}, "
                 f"other_skipped={dict(other_skipped) or '{}'}"
             )
 
-            if kept == 0 and old_skipped == 0 and not other_skipped:
+            if kept == 0 and old_skipped == 0 and not other_skipped and duplicates == 0:
                 logger.info("  empty page, stopping")
                 break
 
             # Past 90d window: page had old listings but nothing kept.
             if old_skipped > 0 and kept == 0:
                 logger.info("  page entirely outside 90d window, stopping")
+                break
+
+            # eBay loops back to earlier results once it runs out of pages for this query.
+            if kept == 0 and duplicates > 0:
+                logger.info("  page entirely duplicates of prior pages, stopping")
                 break
 
             time.sleep(random.uniform(2, 5))

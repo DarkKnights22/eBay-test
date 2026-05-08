@@ -1,18 +1,189 @@
 candidates:
+  # ---- Wheels (sets of 4 are the canonical unit) ----
   - name: "BMW G20 M Sport wheels"
     search_query: "BMW G20 M Sport wheels"
     category: wheels
     bundle_is_canonical: true
     expects_for_parts: false
 
+  - name: "BMW F30 M Sport 400M wheels"
+    search_query: "BMW F30 400M alloy wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW F80 M3 437M wheels"
+    search_query: "BMW F80 M3 437M wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW F90 M5 706M wheels"
+    search_query: "BMW F90 M5 706M wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW G80 M3 826M wheels"
+    search_query: "BMW G80 M3 826M wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW E92 M3 220M wheels"
+    search_query: "BMW E92 M3 220M alloy wheels"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BBS CH-R wheels BMW 5x120"
+    search_query: "BBS CH-R wheels BMW 5x120"
+    category: wheels
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- Exhausts (single unit) ----
   - name: "Akrapovic exhaust BMW F80 M3"
     search_query: "Akrapovic BMW F80 M3 exhaust"
     category: exhaust
     bundle_is_canonical: false
     expects_for_parts: false
 
-  - name: "BMW M Performance carbon mirror caps F80"
+  - name: "Akrapovic exhaust BMW F87 M2 Competition"
+    search_query: "Akrapovic BMW F87 M2 Competition exhaust"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "Eisenmann exhaust BMW E92 M3"
+    search_query: "Eisenmann BMW E92 M3 exhaust"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance exhaust F30 335i"
+    search_query: "BMW M Performance exhaust F30 335i"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- Carbon mirror caps (pair = canonical) ----
+  - name: "BMW M Performance carbon mirror caps F80 F82"
     search_query: "BMW M Performance carbon mirror caps F80 F82"
     category: trim
     bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon mirror caps G20 G80"
+    search_query: "BMW M Performance carbon mirror caps G20 G80"
+    category: trim
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- Carbon trim (single) ----
+  - name: "BMW M Performance carbon rear diffuser F80 M3"
+    search_query: "BMW M Performance carbon diffuser F80 M3"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon front splitter F80 M3"
+    search_query: "BMW M Performance carbon front splitter F80 M3"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon rear spoiler F80 M3"
+    search_query: "BMW M Performance carbon spoiler F80 M3"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon engine cover F80"
+    search_query: "BMW M Performance carbon engine cover F80"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M4 GTS carbon front lip"
+    search_query: "BMW M4 GTS carbon front lip"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F80 M3 carbon bonnet"
+    search_query: "BMW F80 M3 carbon bonnet"
+    category: trim
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- Interior ----
+  - name: "BMW M Performance carbon steering wheel F80"
+    search_query: "BMW M Performance carbon steering wheel F80"
+    category: interior
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance Alcantara steering wheel"
+    search_query: "BMW M Performance Alcantara steering wheel"
+    category: interior
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW G80 M3 carbon bucket seats"
+    search_query: "BMW G80 M3 carbon bucket seats"
+    category: interior
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "BMW M Performance carbon shift paddles F80"
+    search_query: "BMW M Performance carbon shift paddles F80"
+    category: interior
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- Suspension (set of 4 = canonical) ----
+  - name: "KW V3 coilovers BMW F80 M3"
+    search_query: "KW V3 coilovers BMW F80 M3"
+    category: suspension
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  - name: "Bilstein B16 coilovers BMW E92 M3"
+    search_query: "Bilstein B16 coilovers BMW E92 M3"
+    category: suspension
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- Lighting (single — pairs filtered by bundle rule) ----
+  - name: "BMW G20 LCI laser headlights"
+    search_query: "BMW G20 LCI laser headlights"
+    category: lighting
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 LCI LED headlights"
+    search_query: "BMW F30 LCI adaptive LED headlights"
+    category: lighting
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- Brakes (caliper sets) ----
+  - name: "BMW M Performance brake calipers F30"
+    search_query: "BMW M Performance brake calipers F30"
+    category: brakes
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- Electronics / retrofit ----
+  - name: "BMW NBT Evo iD6 retrofit"
+    search_query: "BMW NBT Evo iD6 retrofit"
+    category: electronics
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance digital cluster F80"
+    search_query: "BMW M Performance digital cluster F80"
+    category: electronics
+    bundle_is_canonical: false
     expects_for_parts: false
