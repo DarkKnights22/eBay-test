@@ -212,3 +212,94 @@ candidates:
     category: headlights
     bundle_is_canonical: false
     expects_for_parts: false
+
+  # ---- v2 expansion: exhausts (single naturally) ----
+  - name: "BMW G20 M340i exhaust"
+    search_query: "BMW G20 M340i exhaust"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 340i exhaust"
+    search_query: "BMW F30 340i exhaust"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW M Performance exhaust G20"
+    search_query: "BMW M Performance exhaust G20"
+    category: exhaust
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- splitters (single) ----
+  - name: "BMW G20 M Sport front splitter"
+    search_query: "BMW G20 M Sport front splitter"
+    category: splitter
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 M Sport front splitter"
+    search_query: "BMW F30 M Sport front splitter"
+    category: splitter
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- spoilers (single) ----
+  - name: "BMW G20 boot spoiler"
+    search_query: "BMW G20 boot spoiler"
+    category: spoiler
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 boot spoiler M Performance"
+    search_query: "BMW F30 boot spoiler M Performance"
+    category: spoiler
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- mirror caps G20 (pair) ----
+  - name: "BMW G20 carbon mirror caps"
+    search_query: "BMW G20 carbon mirror caps"
+    category: trim
+    bundle_is_canonical: true
+    expects_for_parts: false
+
+  # ---- steering wheels (single) ----
+  - name: "BMW F30 M Performance steering wheel"
+    search_query: "BMW F30 M Performance steering wheel"
+    category: interior
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW G20 M Sport steering wheel"
+    search_query: "BMW G20 M Sport steering wheel"
+    category: interior
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- rear lights (pair) ----
+  - name: "BMW F30 LCI rear lights"
+    search_query: "BMW F30 LCI rear lights"
+    category: lights
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW G20 LCI rear lights"
+    search_query: "BMW G20 LCI rear lights"
+    category: lights
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  # ---- bumpers (single) ----
+  - name: "BMW F30 M Sport bumper"
+    search_query: "BMW F30 M Sport bumper"
+    category: bumper
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW G20 M Sport bumper"
+    search_query: "BMW G20 M Sport bumper"
+    category: bumper
+    bundle_is_canonical: false
+    expects_for_parts: false
