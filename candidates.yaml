@@ -187,3 +187,28 @@ candidates:
     category: electronics
     bundle_is_canonical: false
     expects_for_parts: false
+
+  # ---- F30 LCI headlight variants (pair-biased queries; see f30_analysis.py) ----
+  - name: "BMW F30 LCI headlights pair"
+    search_query: "BMW F30 LCI headlights pair"
+    category: headlights
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 LCI LED headlights set"
+    search_query: "BMW F30 LCI LED headlights set"
+    category: headlights
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 F31 LCI headlights both"
+    search_query: "BMW F30 F31 LCI headlights both"
+    category: headlights
+    bundle_is_canonical: false
+    expects_for_parts: false
+
+  - name: "BMW F30 LCI adaptive LED"
+    search_query: "BMW F30 LCI adaptive LED"
+    category: headlights
+    bundle_is_canonical: false
+    expects_for_parts: false

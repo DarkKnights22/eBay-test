@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import math
+import re
 from typing import Iterable
 
 import numpy as np
@@ -10,6 +11,47 @@ import pandas as pd
 # Cap applied to median_price inside the "safe" composite score so high-ticket
 # items don't dominate the ranking on price alone.
 SAFE_MEDIAN_CAP_GBP = 500.0
+
+# --- Pair / single / aftermarket classification (used by f30_analysis.py) ---
+
+_PAIR_PATTERNS = [
+    r"\bpair\b", r"\bset\b", r"\bboth\b", r"\bcomplete\b",
+    r"\b2x\b", r"\bx2\b",
+    r"left.*right", r"right.*left",
+    r"driver.*passenger", r"passenger.*driver",
+    r"n\/?s.*o\/?s", r"o\/?s.*n\/?s",
+]
+_SINGLE_PATTERNS = [
+    r"\bsingle\b", r"\bone\b", r"\bleft\b", r"\bright\b",
+    r"\bdriver\s*side\b", r"\bpassenger\s*side\b",
+    r"\bOSF\b", r"\bNSF\b", r"\bRHS\b", r"\bLHS\b",
+    r"\bO\/S\b", r"\bN\/S\b",
+    r"\bnearside\b", r"\boffside\b",
+]
+_AFTERMARKET_PATTERNS = [
+    r"\baftermarket\b", r"\breplica\b", r"\blci.?style\b",
+    r"\bdepo\b", r"\bchinese\b", r"\bbrand\s+new\b", r"\bnew\b",
+]
+PAIR_RE = re.compile("|".join(_PAIR_PATTERNS), re.IGNORECASE)
+SINGLE_RE = re.compile("|".join(_SINGLE_PATTERNS), re.IGNORECASE)
+AFTERMARKET_RE = re.compile("|".join(_AFTERMARKET_PATTERNS), re.IGNORECASE)
+HEADLIGHT_MATCH_RE = re.compile(r"headlight|headlamp|head\s+light", re.IGNORECASE)
+
+
+def classify_pair_single(title: str) -> str:
+    """Return 'pair', 'single', or 'unclear'. Pair takes precedence on conflict."""
+    if not title:
+        return "unclear"
+    if PAIR_RE.search(title):
+        return "pair"
+    if SINGLE_RE.search(title):
+        return "single"
+    return "unclear"
+
+
+def is_aftermarket_suspect(title: str) -> bool:
+    """True if title contains aftermarket/replica/new markers."""
+    return bool(title) and bool(AFTERMARKET_RE.search(title))
 
 
 def _condition_breakdown(conds: pd.Series) -> dict[str, float]:
